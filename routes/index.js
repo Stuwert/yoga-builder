@@ -1,16 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-var payloadPrep = function (data) {
-    //depends on DB decision, but likely:
-    return JSON.parse(data);
-}
-
-var currentSet;
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.send("online and prepared to receive");
+  res.redirect('/api');
 });
+<<<<<<< HEAD
 //
 // router.get('/api/poses/:category', function (req, res, next) {
 //     //returns all poses matching the params.category
@@ -52,6 +47,8 @@ router.get('/api', function (req, res, next) {
 router.get('/api/sequences/', function (req, res, next) {
     //placeholder until sequences fields have been agreed upon
 })
+=======
+>>>>>>> c3f49ab4aabe0f6c5aea3cf7bc26154f5307b0b7
 
 
 module.exports = router;
