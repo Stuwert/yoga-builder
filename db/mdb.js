@@ -47,46 +47,46 @@ db.once('open', function() {
 //   if (err) return console.error(err);
 //   console.log("in baby in!");
 // });
-//seeding
+//seeding DO NOT UNCOMMENT SEEDING!!!!!!!!
 
-var poses = require('../poses.js');
-var seedArray = [];
-var x = 0;
-poses.forEach(function(elem) {
-    var altNameTmp = [];
-    var categoryTmp = [];
-    var tmpObj = {};
-    var anatArray = [];
-    if (elem.alt_name) {
-        altNameTmp = elem.alt_name.split(" / ");
-    }
-    categoryTmp = elem.category.split(" / ");
-    tmpObj.pose_id = x;
-    x += 1;
-    tmpObj.pose_name = elem.pose_name;
-    tmpObj.sanskrit_name = elem.sanskrit_name;
-    tmpObj.translation = elem.translation;
-    if (elem.alt_name) {
-        tmpObj.alt_name = altNameTmp;
-    }
-    tmpObj.category = categoryTmp;
-    tmpObj.difficulty = elem.difficulty;
-    tmpObj.description = elem.description;
-    tmpObj.benefits = elem.benefits;
-    anatArray = elem.benefits.split(" ");
-    tmpObj.anatomy = anatArray;
-    seedArray.push(tmpObj);
-})
-
-for (i=0; i < seedArray.length; i ++) {
-    var j = new Pose(seedArray[i])
-    j.save(function (err, j) {
-      if (err) return console.error(err);
-    });
-};
-
-Pose.find(function (err, poses) {
-  if (err) return console.error(err);
-  console.log(poses);
-})
+// var poses = require('../poses.js');
+// var seedArray = [];
+// var x = 0;
+// poses.forEach(function(elem) {
+//     var altNameTmp = [];
+//     var categoryTmp = [];
+//     var tmpObj = {};
+//     var anatArray = [];
+//     if (elem.alt_name) {
+//         altNameTmp = elem.alt_name.split(" / ");
+//     }
+//     categoryTmp = elem.category.split(" / ");
+//     tmpObj.pose_id = x;
+//     x += 1;
+//     tmpObj.pose_name = elem.pose_name;
+//     tmpObj.sanskrit_name = elem.sanskrit_name;
+//     tmpObj.translation = elem.translation;
+//     if (elem.alt_name) {
+//         tmpObj.alt_name = altNameTmp;
+//     }
+//     tmpObj.category = categoryTmp;
+//     tmpObj.difficulty = elem.difficulty;
+//     tmpObj.description = elem.description;
+//     tmpObj.benefits = elem.benefits;
+//     anatArray = elem.benefits.split(" ");
+//     tmpObj.anatomy = anatArray;
+//     seedArray.push(tmpObj);
+// })
+//
+// for (i=0; i < seedArray.length; i ++) {
+//     var j = new Pose(seedArray[i])
+//     j.save(function (err, j) {
+//       if (err) return console.error(err);
+//     });
+// };
+//
+// Pose.find(function (err, poses) {
+//   if (err) return console.error(err);
+//   console.log(poses);
+// })
 });
