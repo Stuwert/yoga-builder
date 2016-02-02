@@ -22,7 +22,7 @@ router.get('/all', function (req, res, next) {
                   res.format({
                       //HTML response will render the index.jade file in the views/blobs folder. We are also setting "blobs" to be an accessible variable in our jade view
                     html: function(){
-                        res.send('done and done.');
+                        res.send(JSON.stringify(poses));
                     },
                     //JSON response will show all blobs in JSON format
                     json: function(){
