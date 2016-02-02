@@ -7,9 +7,9 @@ var bodyParser = require('body-parser');
 require('dotenv').load();
 var routes = require('./routes/index');
 var api = require('./routes/api');
-
 var app = express();
-
+var db = require('./model/db')
+lob = require('./model/blobs')
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/api', api);
-var mdb = require('./db/mdb');
+// var mdb = require('./db/mdb');
 
 
 

@@ -18,17 +18,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function() {
     console.log("yo!");
-    var posesSchema = mongoose.Schema({
-        pose_id: Number,
-        pose_name: {type: String, trim: true},
-        sanskrit_name: {type: String, trim: true},
-        translation: [],
-        category: [],
-        difficulty: {type: String, trim: true},
-        description: [],
-        benefits: {type: String, trim: true}
-    });
-    var Pose = mongoose.model('Pose', posesSchema);
+    
 //     var testPose = new Pose ({
 //         pose_name: 'Revolved Bird of Paradise Pose',
 //         sanskrit_name: 'Parivṛtta Svarga Dvijāsana',
