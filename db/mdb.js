@@ -19,7 +19,7 @@ db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function() {
     console.log("yo!");
     var posesSchema = mongoose.Schema({
-        pose_id = Number,
+        pose_id: Number,
         pose_name: {type: String, trim: true},
         sanskrit_name: {type: String, trim: true},
         translation: [],
