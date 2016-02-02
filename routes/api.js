@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var mdb = require('../db/mdb');
-// var payloadPrep = function (data) {
-//     //depends on DB decision, but likely:
-//     return JSON.parse(data);
-// }
+var payloadPrep = function (data) {
+    //depends on DB decision, but likely:
+    return JSON.parse(data);
+}
 router.get('/', function (req, res, next) {
     res.send("prepared to receive");
 })
@@ -17,12 +17,11 @@ router.get('/all', function(req, res, next) {
   // } else {
   //   res.send('see the documentation');
   // }
-  var holdMe;
   Pose.find(function (err, poses) {
     if (err) return console.error(err);
-    holdMe = poses;
-    res.json(holdMe);
-  })
+    var spar = payloadPrep(poses);
+    res.json(spar);
+});
 
 });
 
