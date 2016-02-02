@@ -49,7 +49,7 @@ db.once('open', function() {
 // });
 //seeding
 
-var poses = require('./poses.js');
+var poses = require('../poses.js');
 var seedArray = [];
 var x = 0;
 poses.forEach(function(elem) {
