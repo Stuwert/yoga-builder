@@ -9,7 +9,7 @@ var routes = require('./routes/index');
 var api = require('./routes/api');
 var app = express();
 var db = require('./model/db')
-lob = require('./model/blobs')
+var pose = require('./model/poses')
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
