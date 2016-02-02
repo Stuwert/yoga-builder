@@ -5,9 +5,11 @@ var mdb = require('../db/mdb');
 //     //depends on DB decision, but likely:
 //     return JSON.parse(data);
 // }
-
+router.get('/', function (req, res, next) {
+    res.send("prepared to receive");
+})
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/all', function(req, res, next) {
   // var request = req.query;
   // if (Object.keys(request).length) {
   //   // DO STUFF
