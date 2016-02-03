@@ -16,7 +16,7 @@ router.use(methodOverride(function(req, res){
      return method
           }
     }))
-router.get('/', function (req, res, next) {
+router.get('/api', function (req, res, next) {
     // poses.forEach(function(elem) {
     //     var insertObj = {
     //         'pose_name': 0,
