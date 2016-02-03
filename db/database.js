@@ -7,6 +7,6 @@ module.exports = {
     },
 
     addPose: function(insert) {
-        return knex('the_table').insert(insert);
+        return knex('poses').insert(insert);
     }
 };
