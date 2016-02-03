@@ -35,10 +35,22 @@ router.get('/all', function (req, res, next) {
 
     router.get('/poses', function (req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
-res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-                var query = req.query.category;
-                var payload = query.split(" ");
-                mongoose.model('Pose').find({category: {$in: payload}}, function (err, poses) {
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            var filter = {};
+                if (req.query.category) {
+                    var categoryp = req.query.category;
+                    categoryp = category.split(" ");
+                     filter.category = {$in: categoryp};
+                }
+                if (req.query.difficulty) {
+                    var difficultyp = req.query.difficulty;
+                    filter.difficulty = difficultyp;
+                }
+                if (req.query.pose_id) {
+                    var pose_idp = req.query.pose_id;
+                    filter.pose_id = pose_idp;
+                }
+                mongoose.model('Pose').find(filter}, function (err, poses) {
                     if (err) {
                         return console.error(err);
                     } else
