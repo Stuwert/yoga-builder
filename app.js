@@ -8,8 +8,8 @@ require('dotenv').load();
 var routes = require('./routes/index');
 var api = require('./routes/api');
 var app = express();
-var poses = require('../seedposes.js');
-var database = require('../db/database.js');
+var poses = require('./seedposes.js');
+var database = require('./db/database.js');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.set('view engine', 'jade');
