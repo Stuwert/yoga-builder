@@ -40,5 +40,16 @@ router.get('/poses/id', function(req, res, next) {
     })
 });
 
+router.get('/poses/catdiff', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    var diff = req.query.difficulty;
+    var catPrep = req.query.category;
+    cat = catPrep.split(" ");
+    database.outputCatDiff(cat, diff).then(function(result) {
+        res.json(result);
+    })
+})
+
 
 module.exports = router

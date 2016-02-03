@@ -16,5 +16,8 @@ module.exports = {
     },
     outputById: function(id) {
         return knex('poses').where('id', id);
+    },
+    outputCatDiff: function(cat, diff) {
+        return knex('poses').whereIn('category', cat).where('difficulty', diff );
     }
 };
