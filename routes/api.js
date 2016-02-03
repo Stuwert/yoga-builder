@@ -1,83 +1,59 @@
-var express = require('express'),
-router = express.Router(),
-mongoose = require('mongoose'), //mongo connection
-bodyParser = require('body-parser'), //parses information from POST
-methodOverride = require('method-override'); //used to manipulate POST
+var express = require('express');
+router = express.Router();
+var knex = require('../db/knex');
+var database = require('../db/database');
+bodyParser = require('body-parser');
+methodOverride = require('method-override');
 router.use(bodyParser.urlencoded({ extended: true }))
+var poses = require('../seedposes.js');
+
+poses.forEach(function(elem) {
+    var insertObj = {
+        'pose_name': 0,
+        'sanskrit_name': 0,
+        'translation': 0,
+        'category': 0,
+        'difficulty': 0,
+        'description': 0,
+        'benefits': 0,
+        'benefits_array': 0
+    }
+    var catBox = elem.category.split(" / ");
+    catObj = [];
+    catBox.forEach(function(elem) {
+        var temp = elem.split(" ").join("_");
+        catObj.push(temp);
+    });
+    var benArr = elem.benefits.split(" ");
+    var diffObj = elem.difficulty.split(" / ");
+    insertObj.pose_name = elem.pose_name;
+    insertObj.sanskrit_name = elem.sanskrit_name;
+    insertObj.translation = JSON.stringify(elem.translation);
+    insertObj.category = catObj;
+    insertObj.difficulty = diffObj;
+    insertObj.description = JSON.stringify(elem.description);
+    insertObj.benefits = JSON.stringify(elem.benefits);
+    insertObj.benefits_array = JSON.stringify(benArr);
+    database.addPose(insertObj);
+})
+
 router.use(methodOverride(function(req, res){
      if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-     // look in urlencoded POST bodies and delete it
      var method = req.body._method
      delete req.body._method
      return method
           }
     }))
 router.get('/all', function (req, res, next) {
-
-        mongoose.model('Pose').find({}, function (err, poses) {
-              if (err) {
-                  return console.error(err);
-              } else {
-
-                  res.format({
-
-                    html: function(){
-                        res.send(JSON.stringify(poses));
-                    },
-
-                    json: function(){
-                        res.json(poses);
-                    }
-                });
-              }
-        });
+        database.outputAll().then(function(result) {
+            res.send(JSON.stringify(result));
     });
 
     router.get('/poses', function (req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            var filter = {};
-                if (req.query.category) {
-                    var categoryp = req.query.category;
-                    categoryp = category.split(" ");
-                    var theArray = [];
-                    categoryp.forEach(function(elem) {
-                        var pushMe = elem.toString();
-                        theArray.push(pushMe);
-                    })
-                     filter["category"] = {$in: theArray};
-                }
-                if (req.query.difficulty) {
-                    var difficultyp = req.query.difficulty;
-                    difficultyp = difficultyp.toString()
-                    filter["difficulty"] = difficultyp;
-                }
-                if (req.query.pose_id) {
-                    var pose_idp = req.query.pose_id;
-                    pose_idp = pose_idp.toString();
-                    filter["pose_id"] = pose_idp;
-                }
-                    filter = JSON.parse(filter);
-                    var test = ["Supine", "Neutral"];
-                    var test2 = {"category": {$in: test}};
-                mongoose.model('Pose').find({'category': 'Supine'}, function (err, poses) {
-                    if (err) {
-                        return console.error(err + "   **** YO MOTHERFUCKER");
-                    } else
 
-
-                      res.format({
-
-                        html: function(){
-                            res.send(JSON.stringify(poses));
-                        },
-
-                        json: function(){
-                            res.json(poses);
-                        }
-                    });
-                });
-            });
+});
 
 
 module.exports = router;
