@@ -40,17 +40,24 @@ router.get('/all', function (req, res, next) {
                 if (req.query.category) {
                     var categoryp = req.query.category;
                     categoryp = category.split(" ");
-                     filter.category = {$in: categoryp};
+                    var theArray = [];
+                    categoryp.forEach(function(elem) {
+                        var pushMe = elem.toString();
+                        theArray.push(pushMe);
+                    })
+                     filter.category = {$in: theArray};
                 }
                 if (req.query.difficulty) {
                     var difficultyp = req.query.difficulty;
+                    difficultyp = difficultyp.toString()
                     filter.difficulty = difficultyp;
                 }
                 if (req.query.pose_id) {
                     var pose_idp = req.query.pose_id;
+                    pose_idp = pose_idp.toString();
                     filter.pose_id = pose_idp;
                 }
-                console.log(filter);
+
                 mongoose.model('Pose').find(filter), function (err, poses) {
                     if (err) {
                         return console.error(err);
