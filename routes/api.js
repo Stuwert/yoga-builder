@@ -37,11 +37,11 @@ router.get('/all', function (req, res, next) {
             var query = req.query.category;
             query = payload.split('%20');
             var prepArray = [];
-            query.forEach(function(elem) {
-                var first = elem[0].toUpperCase();
-                var rest = elem.substring(1, (elem.length - 1));
-                prepArray.push(first + rest);
-            });
+            // query.forEach(function(elem) {
+            //     var first = elem[0].toUpperCase();
+            //     var rest = elem.substring(1, (elem.length - 1));
+            //     prepArray.push(first + rest);
+            // });
             var payload = [];
             prepArray.forEach(function(elem) {
                 mongoose.model('Pose').find({category: elem}, function (err, poses) {
