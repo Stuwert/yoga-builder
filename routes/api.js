@@ -59,7 +59,7 @@ router.get('/all', function (req, res, next) {
                 }
                     filter = JSON.parse(filter);
                     var test = ["Supine", "Neutral"];
-                    var test2 = {category: {$in: test}};
+                    var test2 = {"category": {$in: test}};
                 mongoose.model('Pose').find(test2), function (err, poses) {
                     if (err) {
                         return console.error(err);
