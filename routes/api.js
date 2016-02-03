@@ -76,7 +76,7 @@ router.get('/all', function (req, res, next) {
                             res.json(poses);
                         }
                     });
-                };
+                });
             });
 
 
