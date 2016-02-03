@@ -4,12 +4,12 @@ exports.up = function(knex, Promise) {
         table.increments();
         table.string('pose_name');
         table.string('sanskrit_name');
-        table.text('translation');
-        table.text('category');
-        table.string('difficulty');
-        table.text('description');
-        table.text('benefits');
-        table.text('benefits_array');
+        table.json('translation');
+        table.json('category');
+        table.json('difficulty');
+        table.json('description');
+        table.json('benefits');
+        table.json('benefits_array');
     });
 };
 
