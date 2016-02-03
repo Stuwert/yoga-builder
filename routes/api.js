@@ -3,7 +3,7 @@ router = express.Router();
 var knex = require('../db/knex');
 var database = require('../db/database');
 var poses = require('../seedposes.js');
-router.get('/api', function (req, res, next) {
+router.get('/', function (req, res, next) {
     // poses.forEach(function(elem) {
     //     var insertObj = {
     //         'pose_name': 0,
@@ -38,16 +38,16 @@ router.get('/api', function (req, res, next) {
     res.send("hi")
 
 })
-router.get('/all', function (req, res, next) {
-        database.outputAll().then(function(result) {
-            res.send(JSON.stringify(result));
-    })
+// router.get('/all', function (req, res, next) {
+//         database.outputAll().then(function(result) {
+//             res.send(JSON.stringify(result));
+//     })
+//
+//     router.get('/poses', function (req, res, next) {
+//         res.header("Access-Control-Allow-Origin", "*");
+//         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//
+// })
 
-    router.get('/poses', function (req, res, next) {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-})
-
-
-module.exports = router;
+module.exports = router
