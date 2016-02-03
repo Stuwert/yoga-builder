@@ -13,7 +13,7 @@ router.use(methodOverride(function(req, res){
           }
     }))
 router.get('/all', function (req, res, next) {
-    //retrieve all blobs from Monogo
+
         mongoose.model('Pose').find({}, function (err, poses) {
               if (err) {
                   return console.error(err);
@@ -24,7 +24,7 @@ router.get('/all', function (req, res, next) {
                     html: function(){
                         res.send(JSON.stringify(poses));
                     },
-                
+
                     json: function(){
                         res.json(poses);
                     }
@@ -32,5 +32,36 @@ router.get('/all', function (req, res, next) {
               }
         });
     });
+
+    router.get('/poses?category=', function (req, res, next) {
+            var query = req.query.category;
+            query = payload.split('%20');
+            var prepArray = [];
+            query.forEach(function(elem) {
+                var first = elem[0].toUpperCase();
+                var rest = elem.substring(1, (elem.length - 1));
+                prepArray.push(first + rest);
+            });
+            var payload = [];
+            prepArray.forEach(function(elem) {
+                mongoose.model('Pose').find({category: elem}, function (err, poses) {
+                    if (err) {
+                        return console.error(err);
+                    } else
+                    payload.push(poses);
+            }) });
+
+                      res.format({
+
+                        html: function(){
+                            res.send(JSON.stringify(payload));
+                        },
+
+                        json: function(){
+                            res.json(payload);
+                        }
+                    });
+                });
+
 
 module.exports = router;
