@@ -27,15 +27,14 @@ router.get('/', function (req, res, next) {
             catObj.push(temp);
         });
         var benArr = elem.benefits.split(" ");
-        var diffObj = elem.difficulty;
         insertObj.pose_name = elem.pose_name;
         insertObj.sanskrit_name = elem.sanskrit_name;
-        insertObj.translation = {'translation':JSON.stringify(elem.translation)};
-        insertObj.category = {'category': JSON.stringify(catObj)};
-        insertObj.difficulty = {'difficulty': diffObj};
-        insertObj.description = {'description': JSON.stringify(elem.description)};
-        insertObj.benefits = {'benefits': JSON.stringify(elem.benefits)};
-        insertObj.benefits_array = {'benefits_array': JSON.stringify(benArr)};
+        insertObj.translation = elem.translation;
+        insertObj.category = catObj;
+        insertObj.difficulty = elem.difficulty;
+        insertObj.description = elem.description;
+        insertObj.benefits = elem.benefits;
+        insertObj.benefits_array = benArr;
         database.addPose(insertObj).then(function (result) {
                 res.send("...");
         })
