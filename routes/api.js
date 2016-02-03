@@ -33,7 +33,7 @@ router.get('/all', function (req, res, next) {
         });
     });
 
-    router.get('/poses?category=', function (req, res, next) {
+    router.get('/poses', function (req, res, next) {
             var query = req.query.category;
             query = payload.split('%20');
             var prepArray = [];
