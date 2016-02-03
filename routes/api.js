@@ -29,13 +29,13 @@ router.get('/', function (req, res, next) {
         var benArr = elem.benefits.split(" ");
         insertObj.pose_name = elem.pose_name.trim();
         insertObj.sanskrit_name = elem.sanskrit_name.trim();
-        insertObj.translation = elem.translation.trim();
+        insertObj.translation = elem.translation;
         insertObj.category = catObj[0].trim();
         insertObj.category1 = catObj[1].trim();
         insertObj.difficulty = elem.difficulty.trim();
-        insertObj.description = elem.description.trim();
-        insertObj.benefits = elem.benefits.trim();
-        insertObj.benefits_array = benArr.trim();
+        insertObj.description = elem.description;
+        insertObj.benefits = elem.benefits;
+        insertObj.benefits_array = benArr;
         database.addPose(insertObj).then(function (result) {
                 res.send("...");
         })
