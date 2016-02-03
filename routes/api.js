@@ -35,7 +35,7 @@ router.get('/', function (req, res, next) {
         insertObj.difficulty = {'difficulty': diffObj};
         insertObj.description = {'description': JSON.stringify(elem.description)};
         insertObj.benefits = {'benefits': JSON.stringify(elem.benefits)};
-        insertObj.benefits_array = {'benefits_array': JSON.stringify(benArr);
+        insertObj.benefits_array = {'benefits_array': JSON.stringify(benArr)};
         database.addPose(insertObj).then(function (result) {
                 res.send("...");
         })
