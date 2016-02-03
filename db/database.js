@@ -10,5 +10,8 @@ module.exports = {
     },
     addPose: function(insert) {
         return knex('poses').insert(insert);
+    },
+    outputByDiff: function(diff) {
+        return knex('poses').where('difficulty', diff);
     }
 };
