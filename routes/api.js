@@ -11,15 +11,16 @@ router.get('/', function (req, res, next) {
     })
 
 })
-// router.get('/all', function (req, res, next) {
-//         database.outputAll().then(function(result) {
-//             res.send(JSON.stringify(result));
-//     })
-//
-//     router.get('/poses', function (req, res, next) {
 
-
-// })
+router.get('/poses/cat', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    var catPrep = req.query.category;
+    catPrep = catPrep.split(" ");
+    database.outputByCat(catPrep).then(function(result) {
+        res.json(result);
+    })
+});
 
 
 module.exports = router
