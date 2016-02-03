@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
         table.string('sanskrit_name');
         table.text('translation');
         table.text('category');
+        table.text('category1');
         table.text('difficulty');
         table.text('description');
         table.text('benefits');
