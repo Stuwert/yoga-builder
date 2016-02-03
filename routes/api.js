@@ -34,7 +34,8 @@ router.get('/all', function (req, res, next) {
     });
 
     router.get('/poses', function (req, res, next) {
-                var payload = ["Supine", "Neutral", "Balancing"];
+                var query = req.query.category;
+                var payload = query.split("%20");
                 mongoose.model('Pose').find({category: {$in: payload}}, function (err, poses) {
                     if (err) {
                         return console.error(err);
