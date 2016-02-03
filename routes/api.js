@@ -50,7 +50,7 @@ router.get('/all', function (req, res, next) {
                     var pose_idp = req.query.pose_id;
                     filter.pose_id = pose_idp;
                 }
-                mongoose.model('Pose').find(filter}, function (err, poses) {
+                mongoose.model('Pose').find(filter), function (err, poses) {
                     if (err) {
                         return console.error(err);
                     } else
