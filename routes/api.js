@@ -34,6 +34,8 @@ router.get('/all', function (req, res, next) {
     });
 
     router.get('/poses', function (req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
                 var query = req.query.category;
                 var payload = query.split(" ");
                 mongoose.model('Pose').find({category: {$in: payload}}, function (err, poses) {
