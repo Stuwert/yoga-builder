@@ -44,6 +44,9 @@ router.use(methodOverride(function(req, res){
      return method
           }
     }))
+router.get('/', function (req, res, next) {
+    res.send("...")
+})
 router.get('/all', function (req, res, next) {
         database.outputAll().then(function(result) {
             res.send(JSON.stringify(result));
