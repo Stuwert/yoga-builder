@@ -57,7 +57,7 @@ router.get('/all', function (req, res, next) {
                     pose_idp = pose_idp.toString();
                     filter["pose_id"] = pose_idp;
                 }
-                    console.log(filter);
+                    filter = JSON.parse(filter);
                 mongoose.model('Pose').find(filter), function (err, poses) {
                     if (err) {
                         return console.error(err);
