@@ -34,8 +34,8 @@ router.get('/all', function (req, res, next) {
     });
 
     router.get('/poses', function (req, res, next) {
-
-                mongoose.model('Pose').find({category: "Supine"}, function (err, poses) {
+                var payload = ["Supine", "Neutral", "Balancing"];
+                mongoose.model('Pose').find({category: {$in: payload}}, function (err, poses) {
                     if (err) {
                         return console.error(err);
                     } else
