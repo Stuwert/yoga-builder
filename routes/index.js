@@ -23,6 +23,7 @@ router.get('/', function(req, res, next) {
             });
             var benArr = elem.benefits.split(" ");
             var diffObj = elem.difficulty;
+            //boom
             insertObj.pose_name = elem.pose_name;
             insertObj.sanskrit_name = elem.sanskrit_name;
             insertObj.translation = JSON.stringify(elem.translation);
