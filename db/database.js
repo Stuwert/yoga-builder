@@ -13,5 +13,8 @@ module.exports = {
     },
     outputByDiff: function(diff) {
         return knex('poses').where('difficulty', diff);
+    },
+    outputById: function(id) {
+        return knex('poses').where('id', id);
     }
 };
