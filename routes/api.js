@@ -44,11 +44,11 @@ router.get('/all', function (req, res, next) {
                       res.format({
 
                         html: function(){
-                            res.send(JSON.stringify(payload));
+                            res.send(JSON.stringify(poses));
                         },
 
                         json: function(){
-                            res.json(payload);
+                            res.json(poses);
                         }
                     });
                 });
