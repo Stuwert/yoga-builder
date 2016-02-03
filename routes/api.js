@@ -58,7 +58,9 @@ router.get('/all', function (req, res, next) {
                     filter["pose_id"] = pose_idp;
                 }
                     filter = JSON.parse(filter);
-                mongoose.model('Pose').find(filter), function (err, poses) {
+                    var test = ["Supine", "Neutral"];
+                    var test2 = {category: {$in: test}};
+                mongoose.model('Pose').find(test2), function (err, poses) {
                     if (err) {
                         return console.error(err);
                     } else
