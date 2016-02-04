@@ -6,7 +6,7 @@ module.exports = {
         return knex('poses');
     },
     outputByCat: function(category) {
-        return knex('poses').whereIn('category', category);
+        return knex('poses').whereIn('category', category).orWhereIn('category1', category);
     },
     addPose: function(insert) {
         return knex('poses').insert(insert);
@@ -18,6 +18,6 @@ module.exports = {
         return knex('poses').where('id', id);
     },
     outputCatDiff: function(cat, diff) {
-        return knex('poses').whereIn('category', cat).where('difficulty', diff );
+        return knex('poses').whereIn('category', cat).orWhereIn('category1', category).where('difficulty', diff );
     }
 };
