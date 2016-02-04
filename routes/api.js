@@ -4,42 +4,12 @@ var knex = require('../db/knex');
 var database = require('../db/database');
 var poses = require('../seedposes.js');
 router.get('/', function (req, res, next) {
-    // database.outputAll().then(function(result){
-    //     res.header("Access-Control-Allow-Origin", "*");
-    //     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    //     res.json(result);
-    //        })
-    poses.forEach(function(elem) {
-        var insertObj = {
-            'pose_name': 0,
-            'sanskrit_name': 0,
-            'translation': 0,
-            'category': 0,
-            'difficulty': 0,
-            'description': 0,
-            'benefits': 0,
-            'benefits_array': 0
-        }
-        var catBox = elem.category.split(" / ");
-        catObj = [];
-        catBox.forEach(function(elem) {
-            var temp = elem.split(" ").join("_");
-            catObj.push(temp);
-        });
-        var benArr = elem.benefits.split(" ");
-        insertObj.pose_name = elem.pose_name.trim();
-        insertObj.sanskrit_name = elem.sanskrit_name.trim();
-        insertObj.translation = elem.translation;
-        insertObj.category = catObj[0].trim();
-        insertObj.category1 = catObj[1].trim();
-        insertObj.difficulty = elem.difficulty.trim();
-        insertObj.description = elem.description;
-        insertObj.benefits = elem.benefits;
-        insertObj.benefits_array = benArr;
-        database.addPose(insertObj).then(function (result) {
-                res.send("...");
-        })
-    })
+    database.outputAll().then(function(result){
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.json(result);
+           })
+
 })
 
 router.get('/poses/cat', function(req, res, next) {

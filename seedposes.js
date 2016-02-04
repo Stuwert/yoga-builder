@@ -1450,3 +1450,36 @@ var poses = [ { file_reference: 'bird_of_paradise_revolved.html',
 
 
 module.exports = poses;
+
+
+// poses.forEach(function(elem) {
+//     var insertObj = {
+//         'pose_name': 0,
+//         'sanskrit_name': 0,
+//         'translation': 0,
+//         'category': 0,
+//         'difficulty': 0,
+//         'description': 0,
+//         'benefits': 0,
+//         'benefits_array': 0
+//     }
+//     var catBox = elem.category.split(" / ");
+//     catObj = [];
+//     catBox.forEach(function(elem) {
+//         var temp = elem.split(" ").join("_");
+//         catObj.push(temp);
+//     });
+//     var benArr = elem.benefits.split(" ");
+//     insertObj.pose_name = elem.pose_name.trim();
+//     insertObj.sanskrit_name = elem.sanskrit_name.trim();
+//     insertObj.translation = elem.translation;
+//     insertObj.category = catObj[0].trim();
+//     insertObj.category1 = catObj[1].trim();
+//     insertObj.difficulty = elem.difficulty.trim();
+//     insertObj.description = elem.description;
+//     insertObj.benefits = elem.benefits;
+//     insertObj.benefits_array = benArr;
+//     database.addPose(insertObj).then(function (result) {
+//             res.send("...");
+//     })
+// })
